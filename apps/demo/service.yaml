@@ -1,0 +1,13 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: tenant-demo
+  labels: &id001
+    app.kubernetes.io/name: tenant-demo
+    app.kubernetes.io/part-of: mandant-a-demo
+spec:
+  selector: *id001
+  ports:
+  - name: http
+    port: 80
+    targetPort: http

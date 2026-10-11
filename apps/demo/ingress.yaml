@@ -1,0 +1,22 @@
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name: tenant-demo
+  labels:
+    app.kubernetes.io/name: tenant-demo
+    app.kubernetes.io/part-of: mandant-a-demo
+  annotations:
+    ingress.cilium.io/loadbalancer-mode: shared
+spec:
+  ingressClassName: cilium
+  rules:
+  - host: mandant-a-demo.berger.ph
+    http:
+      paths:
+      - path: /
+        pathType: Prefix
+        backend:
+          service:
+            name: tenant-demo
+            port:
+              number: 80

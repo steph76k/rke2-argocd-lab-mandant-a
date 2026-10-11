@@ -1,0 +1,23 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: tenant-demo
+  labels:
+    app.kubernetes.io/name: tenant-demo
+    app.kubernetes.io/part-of: mandant-a-demo
+data:
+  index.html: '<!doctype html><html lang="de"><meta charset="utf-8"><meta name="viewport"
+    content="width=device-width,initial-scale=1"><title>Mandant A · Demo</title><style>:root{font-family:system-ui,sans-serif;color:#172033;background:#f3f5fa}body{max-width:850px;margin:9vh
+    auto;padding:24px}header{display:flex;justify-content:space-between;align-items:center}small{letter-spacing:.12em;text-transform:uppercase;color:#637083}.tag{background:#e5f8ed;color:#166534;border-radius:20px;padding:8px
+    14px;font-size:14px}h1{font-size:clamp(36px,7vw,64px);letter-spacing:-.05em;margin-bottom:12px}p{line-height:1.65;color:#546174}.card{background:white;border:1px
+    solid #e2e7f0;border-radius:18px;padding:28px;margin-top:28px;border-top:5px solid
+    #2563eb}dl{display:grid;grid-template-columns:1fr 2fr;gap:16px}dt{color:#637083}dd{margin:0;font-weight:600}code{font-size:14px}footer{margin-top:24px;color:#637083;font-size:14px}</style><header><small>Berger
+    Lab · Anwendungen</small><span class="tag">Demo erreichbar</span></header><h1>Hallo,
+    Mandant A.</h1><p>Deine erste Anwendung wird über Argo CD aus deinem eigenen Git-Repository
+    bereitgestellt.</p><section class="card"><dl><dt>Mandant</dt><dd>Mandant A</dd><dt>Umgebung</dt><dd>Development</dd><dt>Version</dt><dd>1.0
+    · Erste Bereitstellung</dd><dt>Anwendung</dt><dd>Tenant Demo</dd></dl></section><footer>Ändere
+    den Seitentext im ConfigMap-Manifest, committe und pushe. Argo CD übernimmt die
+    Änderung automatisch.</footer></html>'
+  default.conf: "server {\n  listen 8080;\n  server_name _;\n  root /usr/share/nginx/html;\n\
+    \  location / { try_files $uri $uri/ /index.html; }\n  location = /healthz { access_log\
+    \ off; return 200 \"ok\\n\"; }\n}\n"
